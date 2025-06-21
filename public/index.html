@@ -171,7 +171,7 @@
     <footer class="bg-blue-900 text-white py-6">
         <div class="container mx-auto text-center px-6">
             <p>© 2025 Eagles Plan Ltd. All rights reserved.</p>
-            <p class="mt-2">Phone: 0723046426 / 0707882300 | Email: Eaglesplam9@gmail.com</p>
+            <p class="mt-2">Phone: 0723046426 / 0707882300 | Email: eaglesplan9@gmail.com</p>
             <p class="mt-2">
                 <a href="https://wa.me/254707882300?text=Hello%20Eagles%20Plan%20Ltd.,%20I%20have%20an%20inquiry!" target="_blank" class="inline-flex items-center text-green-300 hover:text-green-400 transition">
                     <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.019-.458.13-.606.134-.133.297-.347.446-.52.148-.173.198-.297.297-.495.099-.198.05-.371-.025-.52-.074-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51-.173-.008-.371-.008-.57-.008-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 011.892 6.993c-.001 5.45-4.437 9.884-9.885 9.884m6.332-15.708A11.955 11.955 0 0012.001 0C5.398 0 .093 5.305.093 11.907a11.955 11.955 0 001.518 5.985l-2.405 8.796 9.014-2.367a12.057 12.057 0 005.781 1.475c6.603 0 11.908-5.305 11.908-11.907S18.604.075 12.001.075"/></svg>
@@ -194,16 +194,29 @@
         document.getElementById('closeSidebar').addEventListener('click', toggleSidebar);
 
         // Handle contact form submission
-        document.getElementById('submitBtn').addEventListener('click', function() {
+        document.getElementById('submitBtn').addEventListener('click', async function() {
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
             const message = document.getElementById('message').value;
 
             if (name && email && message) {
-                alert('Thank you for your message! We will get back to you soon.');
-                document.getElementById('name').value = '';
-                document.getElementById('email').value = '';
-                document.getElementById('message').value = '';
+                try {
+                    const response = await fetch('/api/contact', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ name, email, message })
+                    });
+                    if (response.ok) {
+                        alert('Thank you for your message! We will get back to you soon via email.');
+                        document.getElementById('name').value = '';
+                        document.getElementById('email').value = '';
+                        document.getElementById('message').value = '';
+                    } else {
+                        alert('Error sending message. Please try again.');
+                    }
+                } catch (error) {
+                    alert('Error sending message. Please try again.');
+                }
             } else {
                 alert('Please fill out all fields.');
             }

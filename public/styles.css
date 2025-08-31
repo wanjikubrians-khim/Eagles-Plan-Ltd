@@ -3089,6 +3089,92 @@ transform: scale(1.2);
         color: rgba(255, 255, 255, 0.95);
         transform: translateY(-1px);
     }
+}
+
+/* Back to Top Button */
+.back-to-top-btn {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #1a1a1a 0%, #333333 50%, #1a1a1a 100%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    color: #ffffff;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    backdrop-filter: blur(15px);
+    z-index: 1000;
+    box-shadow: 
+        0 4px 20px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        0 0 20px rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+}
+
+.back-to-top-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.back-to-top-btn.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    animation: luminous-pulse 3s ease-in-out infinite alternate;
+}
+
+@keyframes luminous-pulse {
+    0% { 
+        box-shadow: 
+            0 4px 20px rgba(0, 0, 0, 0.4),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1),
+            0 0 20px rgba(255, 255, 255, 0.05);
+    }
+    100% { 
+        box-shadow: 
+            0 6px 25px rgba(0, 0, 0, 0.5),
+            inset 0 1px 0 rgba(255, 255, 255, 0.15),
+            0 0 30px rgba(255, 255, 255, 0.15);
+    }
+}
+
+.back-to-top-btn:hover {
+    background: linear-gradient(135deg, #333333 0%, #4a4a4a 50%, #333333 100%);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-3px);
+    box-shadow: 
+        0 8px 35px rgba(0, 0, 0, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        0 0 40px rgba(255, 255, 255, 0.25);
+}
+
+.back-to-top-btn:hover::before {
+    opacity: 1;
+}
+
+.back-to-top-btn i {
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 2;
+}
+
+.back-to-top-btn:hover i {
+    transform: scale(1.15) translateY(-1px);
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+}
     
     .header {
         padding: 0.5rem 0;
@@ -3155,6 +3241,91 @@ transform: scale(1.2);
     .nav-link:active {
         transform: scale(0.98);
     }
+}
+
+/* Back to Top Button */
+.back-to-top-btn {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #1a1a1a 0%, #333333 50%, #1a1a1a 100%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    color: #ffffff;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    backdrop-filter: blur(15px);
+    z-index: 1000;
+    box-shadow: 
+        0 4px 20px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        0 0 20px rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+}
+
+.back-to-top-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.back-to-top-btn.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    animation: luminous-pulse 3s ease-in-out infinite alternate;
+}
+
+@keyframes luminous-pulse {
+    0% { 
+        box-shadow: 
+            0 4px 20px rgba(0, 0, 0, 0.4),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1),
+            0 0 20px rgba(255, 255, 255, 0.05);
+    }
+    100% { 
+        box-shadow: 
+            0 6px 25px rgba(0, 0, 0, 0.5),
+            inset 0 1px 0 rgba(255, 255, 255, 0.15),
+            0 0 30px rgba(255, 255, 255, 0.15);
+    }
+}
+
+.back-to-top-btn:hover {
+    background: linear-gradient(135deg, #333333 0%, #4a4a4a 50%, #333333 100%);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-3px);
+    box-shadow: 
+        0 8px 35px rgba(0, 0, 0, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        0 0 40px rgba(255, 255, 255, 0.25);
+}
+
+.back-to-top-btn:hover::before {
+    opacity: 1;
+}
+
+.back-to-top-btn i {
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 2;
+}
+
+.back-to-top-btn:hover i {
+    transform: scale(1.15) translateY(-1px);
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
 }
 
 @media (min-width: 768px) {

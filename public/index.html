@@ -4,180 +4,939 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eagles Plan Ltd. - General Supplies</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Roboto', sans-serif; }
-        .smooth-scroll { scroll-behavior: smooth; }
-        .card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); }
-        img { object-fit: cover; }
-        .star-rating input { display: none; }
-        .star-rating label { cursor: pointer; color: #d1d5db; font-size: 1.5rem; }
-        .star-rating input:checked ~ label, .star-rating label:hover, .star-rating label:hover ~ label { color: #f59e0b; }
-        .star-filled { color: #f59e0b; }
-        .star-empty { color: #d1d5db; }
-        #sidebar { transition: transform 0.3s ease; }
-        #overlay { transition: opacity 0.3s ease; }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
 </head>
-<body class="bg-gray-100 smooth-scroll">
+<body class="smooth-scroll">
     <!-- Sidebar for Small Screens -->
-    <div id="sidebar" class="fixed inset-y-0 left-0 w-64 bg-white shadow-lg transform -translate-x-full md:hidden z-50">
-        <div class="flex justify-between items-center p-4 border-b">
-            <div class="text-xl font-bold">Eagles Plan Ltd.</div>
-            <button id="closeSidebar" class="text-gray-600 hover:text-gray-800">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+    <div id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <div class="text-xl font-bold gradient-text">
+                <div class="logo-icon">
+                    <svg width="36" height="36" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Background Shield -->
+                        <path d="M40 5L65 15V35C65 50 55 65 40 75C25 65 15 50 15 35V15L40 5Z" fill="url(#sidebarShieldGradient)" stroke="url(#sidebarShieldStroke)" stroke-width="2"/>
+                        
+                        <!-- Eagle Head and Wings -->
+                        <path d="M40 20L50 30L45 35L40 32L35 35L30 30L40 20Z" fill="url(#sidebarEagleGradient)"/>
+                        <path d="M25 25C28 22 32 20 40 20C48 20 52 22 55 25L50 30C47 27 43 26 40 26C37 26 33 27 30 30L25 25Z" fill="url(#sidebarWingsGradient)"/>
+                        
+                        <!-- Eagle Eye -->
+                        <circle cx="42" cy="25" r="2" fill="#000"/>
+                        <circle cx="42" cy="25" r="1" fill="#ffd700"/>
+                        
+                        <!-- Planning Grid/Blueprint -->
+                        <g opacity="0.8" stroke="url(#sidebarPlanningGradient)" stroke-width="1">
+                            <line x1="20" y1="50" x2="35" y2="50"/>
+                            <line x1="20" y1="55" x2="32" y2="55"/>
+                            <line x1="20" y1="60" x2="38" y2="60"/>
+                            <rect x="20" y="48" width="3" height="3" fill="url(#sidebarPlanningGradient)"/>
+                            <rect x="26" y="48" width="3" height="3" fill="url(#sidebarPlanningGradient)"/>
+                        </g>
+                        
+                        <!-- Supply Chain Elements -->
+                        <g opacity="0.7">
+                            <rect x="45" y="50" width="8" height="6" rx="1" fill="url(#sidebarBoxGradient)" stroke="url(#sidebarPlanningGradient)" stroke-width="0.5"/>
+                            <rect x="55" y="52" width="6" height="4" rx="1" fill="url(#sidebarBoxGradient)" stroke="url(#sidebarPlanningGradient)" stroke-width="0.5"/>
+                        </g>
+                        
+                        <defs>
+                            <linearGradient id="sidebarShieldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#1a1a1a;stop-opacity:0.95" />
+                                <stop offset="50%" style="stop-color:#2a2a2a;stop-opacity:0.95" />
+                                <stop offset="100%" style="stop-color:#0f0f0f;stop-opacity:0.95" />
+                            </linearGradient>
+                            <linearGradient id="sidebarShieldStroke" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#ffd700;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#ffa500;stop-opacity:1" />
+                            </linearGradient>
+                            <linearGradient id="sidebarEagleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#ffd700;stop-opacity:1" />
+                                <stop offset="50%" style="stop-color:#ffed4e;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#ffa500;stop-opacity:1" />
+                            </linearGradient>
+                            <linearGradient id="sidebarWingsGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#ffd700;stop-opacity:0.9" />
+                                <stop offset="100%" style="stop-color:#ffa500;stop-opacity:0.9" />
+                            </linearGradient>
+                            <linearGradient id="sidebarPlanningGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#ffd700;stop-opacity:0.8" />
+                                <stop offset="100%" style="stop-color:#ffa500;stop-opacity:0.8" />
+                            </linearGradient>
+                            <linearGradient id="sidebarBoxGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#ffd700;stop-opacity:0.3" />
+                                <stop offset="100%" style="stop-color:#ffa500;stop-opacity:0.3" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                <span>Eagles Plan Ltd.</span>
+            </div>
+            <button id="closeSidebar" class="text-white hover:text-white transition-colors" aria-label="Close sidebar">
+                <i class="fas fa-times text-xl"></i>
             </button>
         </div>
-        <ul class="flex flex-col space-y-4 p-4">
-            <li><a href="#home" class="text-lg hover:text-blue-600 transition" onclick="toggleSidebar()">Home</a></li>
-            <li><a href="#about" class="text-lg hover:text-blue-600 transition" onclick="toggleSidebar()">About</a></li>
-            <li><a href="#services" class="text-lg hover:text-blue-600 transition" onclick="toggleSidebar()">Services</a></li>
-            <li><a href="#reviews" class="text-lg hover:text-blue-600 transition" onclick="toggleSidebar()">Reviews</a></li>
-            <li><a href="#contact" class="text-lg hover:text-blue-600 transition" onclick="toggleSidebar()">Contact</a></li>
+        <ul class="sidebar-nav">
+            <li><a href="#home" class="sidebar-link" onclick="toggleSidebar()"><i class="fas fa-home"></i><span>Home</span></a></li>
+            <li><a href="#about" class="sidebar-link" onclick="toggleSidebar()"><i class="fas fa-info-circle"></i><span>About</span></a></li>
+            <li><a href="#services" class="sidebar-link" onclick="toggleSidebar()"><i class="fas fa-cogs"></i><span>Services</span></a></li>
+            <li><a href="#reviews" class="sidebar-link" onclick="toggleSidebar()"><i class="fas fa-star"></i><span>Reviews</span></a></li>
+            <li><a href="#contact" class="sidebar-link" onclick="toggleSidebar()"><i class="fas fa-envelope"></i><span>Contact</span></a></li>
         </ul>
     </div>
-    <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 hidden md:hidden z-40" onclick="toggleSidebar()"></div>
+    <div id="overlay" class="overlay hidden" onclick="toggleSidebar()"></div>
 
     <!-- Header -->
-    <header class="bg-blue-900 text-white sticky top-0 z-30 shadow-md">
-        <nav class="container mx-auto flex justify-between items-center py-4 px-6">
-            <div class="text-2xl font-bold">Eagles Plan Ltd.</div>
+    <header class="header">
+        <nav class="nav container">
+            <div class="logo gradient-text">
+                <div class="logo-icon">
+                    <svg width="36" height="36" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Background Shield -->
+                        <path d="M40 5L65 15V35C65 50 55 65 40 75C25 65 15 50 15 35V15L40 5Z" fill="url(#shieldGradient)" stroke="url(#shieldStroke)" stroke-width="2"/>
+                        
+                        <!-- Eagle Head and Wings -->
+                        <path d="M40 20L50 30L45 35L40 32L35 35L30 30L40 20Z" fill="url(#eagleGradient)"/>
+                        <path d="M25 25C28 22 32 20 40 20C48 20 52 22 55 25L50 30C47 27 43 26 40 26C37 26 33 27 30 30L25 25Z" fill="url(#wingsGradient)"/>
+                        
+                        <!-- Eagle Eye -->
+                        <circle cx="42" cy="25" r="2" fill="#000"/>
+                        <circle cx="42" cy="25" r="1" fill="#ffd700"/>
+                        
+                        <!-- Planning Grid/Blueprint -->
+                        <g opacity="0.8" stroke="url(#planningGradient)" stroke-width="1">
+                            <line x1="20" y1="50" x2="35" y2="50"/>
+                            <line x1="20" y1="55" x2="32" y2="55"/>
+                            <line x1="20" y1="60" x2="38" y2="60"/>
+                            <line x1="20" y1="65" x2="30" y2="65"/>
+                            <rect x="20" y="48" width="3" height="3" fill="url(#planningGradient)"/>
+                            <rect x="26" y="48" width="3" height="3" fill="url(#planningGradient)"/>
+                            <rect x="32" y="48" width="3" height="3" fill="url(#planningGradient)"/>
+                        </g>
+                        
+                        <!-- Supply Chain Elements -->
+                        <g opacity="0.7">
+                            <rect x="45" y="50" width="8" height="6" rx="1" fill="url(#boxGradient)" stroke="url(#planningGradient)" stroke-width="0.5"/>
+                            <rect x="55" y="52" width="6" height="4" rx="1" fill="url(#boxGradient)" stroke="url(#planningGradient)" stroke-width="0.5"/>
+                            <rect x="47" y="58" width="6" height="4" rx="1" fill="url(#boxGradient)" stroke="url(#planningGradient)" stroke-width="0.5"/>
+                        </g>
+                        
+                        <defs>
+                            <linearGradient id="shieldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#1a1a1a;stop-opacity:0.95" />
+                                <stop offset="50%" style="stop-color:#2a2a2a;stop-opacity:0.95" />
+                                <stop offset="100%" style="stop-color:#0f0f0f;stop-opacity:0.95" />
+                            </linearGradient>
+                            <linearGradient id="shieldStroke" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#ffd700;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#ffa500;stop-opacity:1" />
+                            </linearGradient>
+                            <linearGradient id="eagleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#ffd700;stop-opacity:1" />
+                                <stop offset="50%" style="stop-color:#ffed4e;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#ffa500;stop-opacity:1" />
+                            </linearGradient>
+                            <linearGradient id="wingsGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#ffd700;stop-opacity:0.9" />
+                                <stop offset="100%" style="stop-color:#ffa500;stop-opacity:0.9" />
+                            </linearGradient>
+                            <linearGradient id="planningGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#ffd700;stop-opacity:0.8" />
+                                <stop offset="100%" style="stop-color:#ffa500;stop-opacity:0.8" />
+                            </linearGradient>
+                            <linearGradient id="boxGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#ffd700;stop-opacity:0.3" />
+                                <stop offset="100%" style="stop-color:#ffa500;stop-opacity:0.3" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                <span>Eagles Plan Ltd.</span>
+            </div>
             <!-- Hamburger Icon for Small Screens -->
-            <button id="openSidebar" class="md:hidden text-white">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            <button id="openSidebar" class="hamburger" aria-label="Open sidebar">
+                <i class="fas fa-bars text-xl"></i>
             </button>
             <!-- Desktop Navigation -->
-            <ul class="hidden md:flex space-x-6">
-                <li><a href="#home" class="hover:text-blue-300 transition">Home</a></li>
-                <li><a href="#about" class="hover:text-blue-300 transition">About</a></li>
-                <li><a href="#services" class="hover:text-blue-300 transition">Services</a></li>
-                <li><a href="#reviews" class="hover:text-blue-300 transition">Reviews</a></li>
-                <li><a href="#contact" class="hover:text-blue-300 transition">Contact</a></li>
+            <ul class="nav-menu desktop">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#reviews" class="nav-link">Reviews</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
         </nav>
     </header>
 
     <!-- Hero Section -->
-    <section id="home" class="bg-blue-800 text-white py-20">
-        <div class="container mx-auto text-center px-6">
-            <h1 class="text-4xl md:text-5xl font-bold mb-4">Welcome to Eagles Plan Ltd.</h1>
-            <p class="text-lg md:text-xl mb-6">Your trusted partner for high-quality general supplies.</p>
-            <a href="#contact" class="bg-yellow-500 text-black font-semibold py-3 px-6 rounded-lg hover:bg-yellow-600 transition">Get a Quote</a>
+    <section id="home" class="hero">
+        <!-- Desktop Hero Background -->
+        <div class="hero-desktop">
+            <div class="hero-video-bg">
+                <div class="video-overlay"></div>
+            </div>
+            
+            <div class="divine-background">
+                <div class="celestial-rays"></div>
+                <div class="floating-orbs">
+                    <div class="orb orb-1"></div>
+                    <div class="orb orb-2"></div>
+                    <div class="orb orb-3"></div>
+                    <div class="orb orb-4"></div>
+                    <div class="orb orb-5"></div>
+                </div>
+                <div class="sparkling-particles">
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                </div>
+                <div class="floating-icons">
+                    <div class="float-icon icon-1"><i class="fas fa-truck"></i></div>
+                    <div class="float-icon icon-2"><i class="fas fa-boxes"></i></div>
+                    <div class="float-icon icon-3"><i class="fas fa-handshake"></i></div>
+                    <div class="float-icon icon-4"><i class="fas fa-chart-line"></i></div>
+                    <div class="float-icon icon-5"><i class="fas fa-globe"></i></div>
+                </div>
+                
+                <!-- Scroll-triggered Product Animations -->
+                <div class="product-animations">
+                    <div class="scroll-product product-phone">
+                        <i class="fas fa-mobile-alt"></i>
+                        <div class="order-pulse"></div>
+                    </div>
+                    <div class="scroll-product product-cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        <div class="cart-items">
+                            <div class="cart-item"></div>
+                            <div class="cart-item"></div>
+                            <div class="cart-item"></div>
+                        </div>
+                    </div>
+                    <div class="scroll-product product-delivery">
+                        <i class="fas fa-shipping-fast"></i>
+                        <div class="delivery-trail"></div>
+                    </div>
+                    <div class="scroll-product product-package">
+                        <i class="fas fa-box-open"></i>
+                        <div class="package-contents">
+                            <div class="content-item"></div>
+                            <div class="content-item"></div>
+                        </div>
+                    </div>
+                    <div class="scroll-product product-order">
+                        <i class="fas fa-clipboard-check"></i>
+                        <div class="order-checkmarks">
+                            <div class="checkmark"></div>
+                            <div class="checkmark"></div>
+                            <div class="checkmark"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Hero Background -->
+        <div class="hero-mobile">
+            <div class="mobile-hero-bg"></div>
+        </div>
+        
+        <div class="container hero-content">
+            <div class="hero-badge fade-in stagger-1">
+                <span>Wholesale Excellence</span>
+            </div>
+            
+            <div class="fade-in stagger-2">
+                <h1 class="hero-title">
+                    <span class="divine-text">Quality Wholesale</span>
+                    <span class="company-name">Eagles Plan Ltd.</span>
+                </h1>
+            </div>
+            
+            <div class="fade-in stagger-3">
+                <p class="hero-description">
+                    <span class="highlight-text">Professional wholesale solutions</span> for businesses and institutions nationwide.
+                </p>
+            </div>
+            
+            
+            <div class="hero-stats fade-in stagger-5">
+                <div class="stat-card">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Premium Products</div>
+                    <div class="stat-icon"><i class="fas fa-boxes"></i></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Global Brands</div>
+                    <div class="stat-icon"><i class="fas fa-award"></i></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">24h</div>
+                    <div class="stat-label">Express Delivery</div>
+                    <div class="stat-icon"><i class="fas fa-shipping-fast"></i></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">1000+</div>
+                    <div class="stat-label">Happy Clients</div>
+                    <div class="stat-icon"><i class="fas fa-users"></i></div>
+                </div>
+            </div>
+            
+            <div class="fade-in stagger-6 hero-buttons">
+                <a href="#contact" class="divine-btn primary">
+                    <span>Get Started</span>
+                </a>
+                <a href="#services" class="divine-btn secondary">
+                    <span>View Products</span>
+                </a>
+            </div>
+            
+            <div class="hero-social fade-in stagger-7">
+                <div class="social-proof">
+                    <span>Trusted nationwide</span>
+                    <div class="trust-indicators">
+                        <div class="trust-item">Quality Assured</div>
+                        <div class="trust-item">Secure</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <a href="#about">
+                <i class="fas fa-chevron-down text-2xl"></i>
+            </a>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-16">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold text-center mb-8">About Us</h2>
-            <p class="text-lg text-gray-700 max-w-2xl mx-auto text-center mb-6">
-                Eagles Plan Ltd. is a leading supplier of general goods, offering a wide range of products including office supplies, industrial equipment, and household essentials. With a commitment to quality and customer satisfaction, we aim to meet the diverse needs of businesses and individuals alike.
-            </p>
-            <div class="max-w-2xl mx-auto">
-                <h3 class="text-xl font-semibold mb-4">Our Vision</h3>
-                <p class="text-gray-700 mb-6">To be the premier provider of general supplies, delivering unparalleled quality and value to our customers across the region.</p>
-                <h3 class="text-xl font-semibold mb-4">Our Mission</h3>
-                <p class="text-gray-700">To supply high-quality products with exceptional service, fostering long-term partnerships built on trust, reliability, and innovation.</p>
+    <section id="about" class="section" style="background: linear-gradient(to bottom right, var(--gray-50), var(--blue-50));">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title gradient-text">About Us</h2>
+                <div class="section-divider-line"></div>
+                <p class="section-subtitle">
+                    Eagles Plan Ltd. is a leading supplier of general goods, offering a wide range of products including office supplies, industrial equipment, and household essentials. With a commitment to quality and customer satisfaction, we aim to meet the diverse needs of businesses and individuals alike.
+                </p>
+            </div>
+            
+            <div class="about-grid">
+                <div class="modern-card vision-mission-card">
+                    <div class="card-header">
+                        <div class="card-icon blue">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <h3 class="card-title">Our Vision</h3>
+                    </div>
+                    <p class="card-text">
+                        To be the premier provider of general supplies, delivering unparalleled quality and value to our customers across the region.
+                    </p>
+                </div>
+                
+                <div class="modern-card vision-mission-card">
+                    <div class="card-header">
+                        <div class="card-icon purple">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <h3 class="card-title">Our Mission</h3>
+                    </div>
+                    <p class="card-text">
+                        To supply high-quality products with exceptional service, fostering long-term partnerships built on trust, reliability, and innovation.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Stats Section -->
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number gradient-text">500+</div>
+                    <div class="stat-label">Happy Clients</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number gradient-text">1000+</div>
+                    <div class="stat-label">Products</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number gradient-text">5+</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number gradient-text">24/7</div>
+                    <div class="stat-label">Support</div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="bg-gray-200 py-16">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold text-center mb-12">Our Services</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white p-6 rounded-lg shadow-lg text-center card">
-                    <img src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Office Supplies" class="w-full h-48 rounded-t-lg mb-4">
-                    <h3 class="text-xl font-semibold mb-4">Office Supplies</h3>
-                    <p class="text-gray-600">From stationery to furniture, we provide everything your office needs to run smoothly.</p>
+    <section id="services" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title gradient-text">Wholesale Solutions</h2>
+                <div class="section-divider-line"></div>
+                <p class="section-subtitle">
+                    Premium manufactured goods and cleaning products for businesses across East Africa
+                </p>
+            </div>
+
+            <!-- Service Categories Navigation -->
+            <div class="service-categories">
+                <button class="category-btn active" data-category="all">
+                    <i class="fas fa-th-large"></i>
+                    All Products
+                </button>
+                <button class="category-btn" data-category="manufactured">
+                    <i class="fas fa-industry"></i>
+                    Manufactured Goods
+                </button>
+                <button class="category-btn" data-category="cleaning">
+                    <i class="fas fa-spray-can"></i>
+                    Cleaning Products
+                </button>
+                <button class="category-btn" data-category="office">
+                    <i class="fas fa-briefcase"></i>
+                    Office Supplies
+                </button>
+            </div>
+            
+            <!-- Featured Services Grid -->
+            <div class="services-showcase">
+                <!-- Manufactured Goods -->
+                <div class="service-category manufactured all">
+                    <div class="category-header">
+                        <h3 class="category-title">Manufactured Goods</h3>
+                        <p class="category-subtitle">Quality products from trusted manufacturers</p>
+                    </div>
+                    <div class="products-grid">
+                        <div class="product-card">
+                            <div class="product-icon">
+                                <i class="fas fa-tools"></i>
+                            </div>
+                            <h4 class="product-title">Hardware & Tools</h4>
+                            <p class="product-description">Professional-grade tools, fasteners, and hardware supplies</p>
+                            <div class="product-features">
+                                <span class="feature">Power Tools</span>
+                                <span class="feature">Hand Tools</span>
+                                <span class="feature">Fasteners</span>
+                            </div>
+                        </div>
+
+                        <div class="product-card">
+                            <div class="product-icon">
+                                <i class="fas fa-microchip"></i>
+                            </div>
+                            <h4 class="product-title">Electronics & Tech</h4>
+                            <p class="product-description">Latest technology products and electronic components</p>
+                            <div class="product-features">
+                                <span class="feature">Components</span>
+                                <span class="feature">Devices</span>
+                                <span class="feature">Accessories</span>
+                            </div>
+                        </div>
+
+                        <div class="product-card">
+                            <div class="product-icon">
+                                <i class="fas fa-hard-hat"></i>
+                            </div>
+                            <h4 class="product-title">Safety Equipment</h4>
+                            <p class="product-description">Comprehensive safety gear and protective equipment</p>
+                            <div class="product-features">
+                                <span class="feature">PPE</span>
+                                <span class="feature">Safety Gear</span>
+                                <span class="feature">Signage</span>
+                            </div>
+                        </div>
+
+                        <div class="product-card">
+                            <div class="product-icon">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <h4 class="product-title">Machinery Parts</h4>
+                            <p class="product-description">Spare parts and components for industrial machinery</p>
+                            <div class="product-features">
+                                <span class="feature">Bearings</span>
+                                <span class="feature">Motors</span>
+                                <span class="feature">Belts</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="bg-white p-6 rounded-lg shadow-lg text-center card">
-                    <img src="https://images.unsplash.com/photo-1586528116311-ad8c5517983b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Industrial Equipment" class="w-full h-48 rounded-t-lg mb-4">
-                    <h3 class="text-xl font-semibold mb-4">Industrial Equipment</h3>
-                    <p class="text-gray-600">High-quality tools and machinery to support your industrial operations.</p>
+
+                <!-- Cleaning Products -->
+                <div class="service-category cleaning all">
+                    <div class="category-header">
+                        <h3 class="category-title">Cleaning Products</h3>
+                        <p class="category-subtitle">Professional-grade cleaning solutions</p>
+                    </div>
+                    <div class="products-grid">
+                        <div class="product-card featured">
+                            <div class="product-badge">Best Seller</div>
+                            <div class="product-icon">
+                                <i class="fas fa-spray-can"></i>
+                            </div>
+                            <h4 class="product-title">Industrial Cleaners</h4>
+                            <p class="product-description">Heavy-duty cleaning solutions for industrial facilities</p>
+                            <div class="product-features">
+                                <span class="feature">Degreasers</span>
+                                <span class="feature">Solvents</span>
+                                <span class="feature">Sanitizers</span>
+                            </div>
+                        </div>
+
+                        <div class="product-card">
+                            <div class="product-icon">
+                                <i class="fas fa-broom"></i>
+                            </div>
+                            <h4 class="product-title">Janitorial Supplies</h4>
+                            <p class="product-description">Complete range of janitorial and maintenance supplies</p>
+                            <div class="product-features">
+                                <span class="feature">Mops & Brooms</span>
+                                <span class="feature">Trash Bags</span>
+                                <span class="feature">Paper Products</span>
+                            </div>
+                        </div>
+
+                        <div class="product-card">
+                            <div class="product-icon">
+                                <i class="fas fa-pump-soap"></i>
+                            </div>
+                            <h4 class="product-title">Hygiene Products</h4>
+                            <p class="product-description">Personal and facility hygiene solutions</p>
+                            <div class="product-features">
+                                <span class="feature">Hand Sanitizers</span>
+                                <span class="feature">Soaps</span>
+                                <span class="feature">Dispensers</span>
+                            </div>
+                        </div>
+
+                        <div class="product-card">
+                            <div class="product-icon">
+                                <i class="fas fa-shield-virus"></i>
+                            </div>
+                            <h4 class="product-title">Disinfectants</h4>
+                            <p class="product-description">Hospital-grade disinfection and sterilization products</p>
+                            <div class="product-features">
+                                <span class="feature">Surface Cleaners</span>
+                                <span class="feature">Air Fresheners</span>
+                                <span class="feature">Antimicrobials</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="bg-white p-6 rounded-lg shadow-lg text-center card">
-                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Household Goods" class="w-full h-48 rounded-t-lg mb-4">
-                    <h3 class="text-xl font-semibold mb-4">Household Goods</h3>
-                    <p class="text-gray-600">Reliable and affordable products for homes and small businesses.</p>
+
+                <!-- Office Supplies -->
+                <div class="service-category office all">
+                    <div class="category-header">
+                        <h3 class="category-title">Office Supplies</h3>
+                        <p class="category-subtitle">Everything your office needs to operate efficiently</p>
+                    </div>
+                    <div class="products-grid">
+                        <div class="product-card">
+                            <div class="product-icon">
+                                <i class="fas fa-pen"></i>
+                            </div>
+                            <h4 class="product-title">Stationery</h4>
+                            <p class="product-description">Complete range of writing and office stationery</p>
+                            <div class="product-features">
+                                <span class="feature">Pens & Pencils</span>
+                                <span class="feature">Paper Products</span>
+                                <span class="feature">Filing</span>
+                            </div>
+                        </div>
+
+                        <div class="product-card">
+                            <div class="product-icon">
+                                <i class="fas fa-chair"></i>
+                            </div>
+                            <h4 class="product-title">Office Furniture</h4>
+                            <p class="product-description">Ergonomic and modern office furniture solutions</p>
+                            <div class="product-features">
+                                <span class="feature">Desks</span>
+                                <span class="feature">Chairs</span>
+                                <span class="feature">Storage</span>
+                            </div>
+                        </div>
+
+                        <div class="product-card">
+                            <div class="product-icon">
+                                <i class="fas fa-laptop"></i>
+                            </div>
+                            <h4 class="product-title">Technology</h4>
+                            <p class="product-description">Modern office technology and equipment</p>
+                            <div class="product-features">
+                                <span class="feature">Computers</span>
+                                <span class="feature">Printers</span>
+                                <span class="feature">Accessories</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="services-cta">
+                <div class="cta-hero">
+                    <div class="cta-content">
+                        <div class="cta-badge">
+                            <i class="fas fa-star"></i>
+                            <span>Premium Wholesale Partner</span>
+                        </div>
+                        <h3 class="cta-title">Ready to Scale Your Business?</h3>
+                        <p class="cta-subtitle">Join 1000+ businesses who trust us for their wholesale needs. Get competitive prices, reliable delivery, and exceptional service.</p>
+                        <div class="cta-features">
+                            <div class="cta-feature">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Bulk Discounts Available</span>
+                            </div>
+                            <div class="cta-feature">
+                                <i class="fas fa-check-circle"></i>
+                                <span>24/7 Customer Support</span>
+                            </div>
+                            <div class="cta-feature">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Nationwide Delivery</span>
+                            </div>
+                        </div>
+                        <div class="cta-buttons">
+                            <a href="#contact" class="btn btn-primary">
+                                <i class="fas fa-phone mr-2"></i>
+                                Get Quote
+                            </a>
+                            <a href="https://wa.me/254707882300?text=Hello%20Eagles%20Plan%20Ltd.,%20I%20need%20a%20wholesale%20quote!" target="_blank" rel="noopener" class="btn btn-secondary">
+                                <i class="fab fa-whatsapp mr-2"></i>
+                                WhatsApp Us
+                            </a>
+                        </div>
+                    </div>
+                    <div class="cta-visual">
+                        <div class="cta-circle">
+                            <div class="cta-icon">
+                                <i class="fas fa-truck"></i>
+                            </div>
+                        </div>
+                        <div class="cta-carts">
+                            <div class="cart-icon cart-1">
+                                <i class="fas fa-shopping-cart"></i>
+                            </div>
+                            <div class="cart-icon cart-2">
+                                <i class="fas fa-shopping-cart"></i>
+                            </div>
+                            <div class="cart-icon cart-3">
+                                <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <div class="cta-visual">
+                            <div class="cta-circle">
+                                <div class="cta-icon">
+                                    <i class="fas fa-truck"></i>
+                                </div>
+                            </div>
+                            <div class="cta-carts">
+                                <div class="cart-icon cart-1">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </div>
+                                <div class="cart-icon cart-2">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </div>
+                                <div class="cart-icon cart-3">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </div>
+                            </div>
+                            <div class="cta-dots"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cta-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-boxes"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number">500+</div>
+                            <div class="stat-label">Premium Products</div>
+                            <div class="stat-description">Curated Selection</div>
+                        </div>
+                        <div class="stat-glow"></div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number">50+</div>
+                            <div class="stat-label">Trusted Brands</div>
+                            <div class="stat-description">Global Partners</div>
+                        </div>
+                        <div class="stat-glow"></div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-shipping-fast"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number">24h</div>
+                            <div class="stat-label">Express Delivery</div>
+                            <div class="stat-description">Nationwide Coverage</div>
+                        </div>
+                        <div class="stat-glow"></div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number">1000+</div>
+                            <div class="stat-label">Happy Clients</div>
+                            <div class="stat-description">Satisfied Customers</div>
+                        </div>
+                        <div class="stat-glow"></div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Reviews Section -->
-    <section id="reviews" class="py-16">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold text-center mb-12">Customer Reviews</h2>
-            <!-- Display Reviews -->
-            <div id="reviewsList" class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12"></div>
-            <!-- Review Form -->
-            <div class="max-w-lg mx-auto">
-                <h3 class="text-xl font-semibold text-center mb-6">Leave a Review</h3>
-                <div class="bg-white p-6 rounded-lg shadow-md">
-                    <div class="space-y-4">
-                        <input type="text" id="reviewName" placeholder="Your Name" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        <div class="star-rating flex justify-center space-x-1">
-                            <input type="radio" id="star5" name="rating" value="5"><label for="star5">★</label>
-                            <input type="radio" id="star4" name="rating" value="4"><label for="star4">★</label>
-                            <input type="radio" id="star3" name="rating" value="3"><label for="star3">★</label>
-                            <input type="radio" id="star2" name="rating" value="2"><label for="star2">★</label>
-                            <input type="radio" id="star1" name="rating" value="1"><label for="star1">★</label>
+    <section id="reviews" class="section reviews-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title gradient-text">Customer Reviews</h2>
+                <div class="section-divider-line reviews-divider"></div>
+                <p class="section-subtitle">
+                    What our valued customers say about our services
+                </p>
+            </div>
+            
+            <!-- Static Reviews -->
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar blue">
+                            M
                         </div>
-                        <textarea id="reviewComment" placeholder="Your Review" rows="4" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
-                        <button id="submitReview" class="w-full bg-blue-900 text-white font-semibold py-3 rounded-lg hover:bg-blue-800 transition">Submit Review</button>
+                        <div class="review-info">
+                            <h4>Michael Johnson</h4>
+                            <div class="review-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
                     </div>
+                    <p class="review-text">"Excellent service and quality products. Eagles Plan Ltd has been our go-to supplier for office equipment for over 2 years. Highly recommended!"</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar green">
+                            S
+                        </div>
+                        <div class="review-info">
+                            <h4>Sarah Williams</h4>
+                            <div class="review-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="review-text">"Professional team with competitive prices. They delivered our industrial equipment on time and provided excellent after-sales support."</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar purple">
+                            D
+                        </div>
+                        <div class="review-info">
+                            <h4>David Chen</h4>
+                            <div class="review-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="review-text">"Great variety of household goods at reasonable prices. The customer service team is very responsive and helpful."</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar orange">
+                            A
+                        </div>
+                        <div class="review-info">
+                            <h4>Amanda Rodriguez</h4>
+                            <div class="review-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="review-text">"Outstanding quality and fast delivery. Eagles Plan Ltd has become our trusted partner for all our supply needs."</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="bg-gray-200 py-16">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold text-center mb-8">Contact Us</h2>
-            <div class="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+    <section id="contact" class="section" style="background: linear-gradient(to bottom right, var(--gray-900), #1e3a8a); color: var(--white);">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title text-white">Get In Touch</h2>
+                <div class="section-divider-line" style="background: linear-gradient(to right, var(--blue-400), #22d3ee);"></div>
+                <p class="section-subtitle" style="color: rgba(255, 255, 255, 0.8);">
+                    Ready to start your next project? Let's discuss how we can help you succeed.
+                </p>
+            </div>
+            
+            <div class="contact-grid">
                 <!-- Contact Form -->
-                <div class="bg-white p-6 rounded-lg shadow-md">
-                    <p class="text-gray-600 mb-4 text-center">Reach out to us for inquiries or quotes.</p>
-                    <div class="space-y-4">
-                        <input type="text" id="name" placeholder="Your Name" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        <input type="email" id="email" placeholder="Your Email" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        <textarea id="message" placeholder="Your Message" rows="4" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
-                        <button id="submitBtn" class="w-full bg-blue-900 text-white font-semibold py-3 rounded-lg hover:bg-blue-800 transition">Send Message</button>
-                        <a href="https://wa.me/254707882300?text=Hello%20Eagles%20Plan%20Ltd.,%20I%20have%20an%20inquiry!" target="_blank" class="w-full bg-green-500 text-white font-semibold py-3 rounded-lg hover:bg-green-600 transition flex items-center justify-center">
-                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.019-.458.13-.606.134-.133.297-.347.446-.52.148-.173.198-.297.297-.495.099-.198.05-.371-.025-.52-.074-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51-.173-.008-.371-.008-.57-.008-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 011.892 6.993c-.001 5.45-4.437 9.884-9.885 9.884m6.332-15.708A11.955 11.955 0 0012.001 0C5.398 0 .093 5.305.093 11.907a11.955 11.955 0 001.518 5.985l-2.405 8.796 9.014-2.367a12.057 12.057 0 005.781 1.475c6.603 0 11.908-5.305 11.908-11.907S18.604.075 12.001.075"/></svg>
-                            Contact via WhatsApp
+                <div class="modern-card contact-form">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">
+                        <i class="fas fa-envelope text-blue-500 mr-3"></i>
+                        Send us a Message
+                    </h3>
+                    <div class="form-group">
+                        <input type="text" id="name" placeholder="Your Name" class="modern-input">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" placeholder="Your Email" class="modern-input">
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" placeholder="Tell us about your project..." rows="5" class="modern-input"></textarea>
+                    </div>
+                    <button id="submitBtn" class="modern-btn w-full text-white font-semibold">
+                        <i class="fas fa-paper-plane mr-2"></i>
+                        Send Message
+                    </button>
+                </div>
+                
+                <!-- Contact Info & Working Hours -->
+                <div class="contact-info">
+                    <!-- Quick Contact -->
+                    <div class="modern-card contact-card">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6">
+                            <i class="fas fa-phone text-green-500 mr-3"></i>
+                            Quick Contact
+                        </h3>
+                        <div class="contact-item">
+                            <div class="contact-icon contact-icon-blue">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-details">
+                                <div class="contact-label">Phone</div>
+                                <div class="contact-value">0723046426 / 0707882300</div>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon contact-icon-purple">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-details">
+                                <div class="contact-label">Email</div>
+                                <div class="contact-value">Eaglesplan9@gmail.com</div>
+                            </div>
+                        </div>
+                        <a href="https://wa.me/254707882300?text=Hello%20Eagles%20Plan%20Ltd.,%20I%20have%20an%20inquiry!" target="_blank" rel="noopener" class="whatsapp-btn mt-6">
+                            <i class="fab fa-whatsapp text-2xl mr-3"></i>
+                            <span>Chat on WhatsApp</span>
                         </a>
                     </div>
-                </div>
-                <!-- Working Hours -->
-                <div class="bg-white p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl font-semibold mb-4 text-center">Working Hours</h3>
-                    <table class="w-full text-gray-600">
-                        <tr><td class="py-2 font-medium">Monday - Friday</td><td class="py-2 text-right">8:00 AM - 5:00 PM</td></tr>
-                        <tr><td class="py-2 font-medium">Saturday</td><td class="py-2 text-right">9:00 AM - 1:00 PM</td></tr>
-                        <tr><td class="py-2 font-medium">Sunday</td><td class="py-2 text-right">Closed</td></tr>
-                    </table>
+                    
+                    <!-- Working Hours -->
+                    <div class="modern-card contact-card">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6">
+                            <i class="fas fa-clock text-orange-500 mr-3"></i>
+                            Working Hours
+                        </h3>
+                        <div class="hours-table">
+                            <div class="hours-row">
+                                <span class="hours-day">Monday - Friday</span>
+                                <span class="hours-time">8:00 AM - 5:00 PM</span>
+                            </div>
+                            <div class="hours-row">
+                                <span class="hours-day">Saturday</span>
+                                <span class="hours-time">9:00 AM - 1:00 PM</span>
+                            </div>
+                            <div class="hours-row">
+                                <span class="hours-day">Sunday</span>
+                                <span class="hours-closed">Closed</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-blue-900 text-white py-6">
-        <div class="container mx-auto text-center px-6">
-            <p>© 2025 Eagles Plan Ltd. All rights reserved.</p>
-            <p class="mt-2">Phone: 0723046426 / 0707882300 | Email: Eaglesplan9@gmail.com</p>
-            <p class="mt-2">
-                <a href="https://wa.me/254707882300?text=Hello%20Eagles%20Plan%20Ltd.,%20I%20have%20an%20inquiry!" target="_blank" class="inline-flex items-center text-green-300 hover:text-green-400 transition">
-                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.019-.458.13-.606.134-.133.297-.347.446-.52.148-.173.198-.297.297-.495.099-.198.05-.371-.025-.52-.074-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51-.173-.008-.371-.008-.57-.008-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 011.892 6.993c-.001 5.45-4.437 9.884-9.885 9.884m6.332-15.708A11.955 11.955 0 0012.001 0C5.398 0 .093 5.305.093 11.907a11.955 11.955 0 001.518 5.985l-2.405 8.796 9.014-2.367a12.057 12.057 0 005.781 1.475c6.603 0 11.908-5.305 11.908-11.907S18.604.075 12.001.075"/></svg>
-                    WhatsApp Us
-                </a>
-            </p>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Company Info -->
+                <div class="footer-section left">
+                    <div class="footer-logo">
+                        <i class="fas fa-eagle text-3xl gradient-text"></i>
+                        <h3 class="text-2xl font-bold">Eagles Plan Ltd.</h3>
+                    </div>
+                    <p class="footer-description">
+                        Your trusted partner for premium general supplies, delivering excellence across all industries.
+                    </p>
+                </div>
+                
+                <!-- Quick Links -->
+                <div class="footer-section">
+                    <h4 class="footer-title">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home" class="footer-link">Home</a></li>
+                        <li><a href="#about" class="footer-link">About</a></li>
+                        <li><a href="#services" class="footer-link">Services</a></li>
+                        <li><a href="#reviews" class="footer-link">Reviews</a></li>
+                        <li><a href="#contact" class="footer-link">Contact</a></li>
+                        <li><a href="#" class="footer-link ecommerce-link" id="ecommerce-link">🛒 Shop Online</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact Info -->
+                <div class="footer-section right">
+                    <h4 class="footer-title">Contact Info</h4>
+                    <div class="footer-contact">
+                        <p><i class="fas fa-phone mr-2"></i>0723046426 / 0707882300</p>
+                        <p><i class="fas fa-envelope mr-2"></i>Eaglesplan9@gmail.com</p>
+                        <a href="https://wa.me/254707882300?text=Hello%20Eagles%20Plan%20Ltd.,%20I%20have%20an%20inquiry!" target="_blank" rel="noopener" class="footer-link mt-3" style="color: var(--green-300);">
+                            <i class="fab fa-whatsapp mr-2"></i>
+                            WhatsApp Us
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="footer-copyright">© 2025 Eagles Plan Ltd. All rights reserved. | 
+                    <span class="developer-credit">Crafted by <a href="https://portfolio-eosin-six-13.vercel.app/" target="_blank" rel="noopener" class="developer-link">Khim Tech</a></span>
+                </p>
+            </div>
         </div>
     </footer>
 
@@ -186,90 +945,174 @@
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
             const overlay = document.getElementById('overlay');
-            sidebar.classList.toggle('-translate-x-full');
+            sidebar.classList.toggle('open');
             overlay.classList.toggle('hidden');
         }
 
         document.getElementById('openSidebar').addEventListener('click', toggleSidebar);
         document.getElementById('closeSidebar').addEventListener('click', toggleSidebar);
 
-        // Handle contact form submission
-        document.getElementById('submitBtn').addEventListener('click', function() {
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
-
-            if (name && email && message) {
-                alert('Thank you for your message! We will get back to you soon.');
-                document.getElementById('name').value = '';
-                document.getElementById('email').value = '';
-                document.getElementById('message').value = '';
-            } else {
-                alert('Please fill out all fields.');
-            }
-        });
-
-        // Handle review form submission
-        document.getElementById('submitReview').addEventListener('click', async function() {
-            const name = document.getElementById('reviewName').value;
-            const comment = document.getElementById('reviewComment').value;
-            const rating = document.querySelector('input[name="rating"]:checked')?.value;
-
-            if (name && comment && rating) {
-                try {
-                    const response = await fetch('/api/reviews', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ name, comment, rating: parseInt(rating) })
-                    });
-                    if (response.ok) {
-                        alert('Thank you for your review! It will be displayed once approved.');
-                        document.getElementById('reviewName').value = '';
-                        document.getElementById('reviewComment').value = '';
-                        document.querySelector('input[name="rating"]:checked').checked = false;
-                        renderReviews();
-                    } else {
-                        alert('Error submitting review. Please try again.');
-                    }
-                } catch (error) {
-                    alert('Error submitting review. Please try again.');
-                }
-            } else {
-                alert('Please fill out all fields and select a rating.');
-            }
-        });
-
-        // Render reviews
-        async function renderReviews() {
-            const reviewsList = document.getElementById('reviewsList');
-            try {
-                const response = await fetch('/api/reviews');
-                const reviews = await response.json();
-                reviewsList.innerHTML = '';
-                if (reviews.length === 0) {
-                    reviewsList.innerHTML = '<p class="text-center text-gray-600">No reviews yet.</p>';
+        // Filter products
+        function filterProducts(category) {
+            const products = document.querySelectorAll('.product-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+            
+            // Update active button
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Filter products
+            products.forEach(product => {
+                if (category === 'all' || product.dataset.category === category) {
+                    product.style.display = 'block';
+                    setTimeout(() => {
+                        product.style.opacity = '1';
+                        product.style.transform = 'translateY(0)';
+                    }, 100);
                 } else {
-                    reviews.forEach(review => {
-                        const reviewCard = document.createElement('div');
-                        reviewCard.className = 'bg-white p-6 rounded-lg shadow-md';
-                        reviewCard.innerHTML = `
-                            <h4 class="text-lg font-semibold">${review.name}</h4>
-                            <div class="flex mb-2">
-                                ${Array(5).fill(0).map((_, i) => `<span class="${i < review.rating ? 'star-filled' : 'star-empty'}">★</span>`).join('')}
-                            </div>
-                            <p class="text-gray-600">${review.comment}</p>
-                            <p class="text-sm text-gray-500 mt-2">${new Date(review.date).toLocaleDateString()}</p>
-                        `;
-                        reviewsList.appendChild(reviewCard);
-                    });
+                    product.style.opacity = '0';
+                    product.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        product.style.display = 'none';
+                    }, 300);
                 }
-            } catch (error) {
-                reviewsList.innerHTML = '<p class="text-center text-gray-600">Error loading reviews.</p>';
-            }
+            });
         }
 
-        // Initial render of reviews
-        renderReviews();
+        // Adaptive navbar based on scroll position
+        function updateNavbarStyle() {
+            const header = document.querySelector('.header');
+            const sections = document.querySelectorAll('section');
+            const scrollY = window.scrollY;
+            const headerHeight = header.offsetHeight;
+            
+            // Remove all adaptive classes
+            header.classList.remove('on-dark', 'on-light', 'on-blue', 'on-gradient');
+            
+            // Check which section is behind the navbar
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top <= headerHeight && rect.bottom >= 0) {
+                    const sectionId = section.id;
+                    const sectionStyle = window.getComputedStyle(section);
+                    const bgColor = sectionStyle.backgroundColor;
+                    const bgImage = sectionStyle.backgroundImage;
+                    
+                    // Determine background type and apply appropriate class
+                    if (sectionId === 'hero' || bgImage.includes('gradient') && bgImage.includes('0, 0, 0')) {
+                        header.classList.add('on-dark');
+                    } else if (sectionId === 'reviews' || bgColor.includes('248, 250, 252')) {
+                        header.classList.add('on-light');
+                    } else if (sectionId === 'contact' || bgImage.includes('30, 58, 138')) {
+                        header.classList.add('on-blue');
+                    } else if (bgImage.includes('gradient')) {
+                        header.classList.add('on-gradient');
+                    }
+                }
+            });
+        }
+
+        // Ecommerce link placeholder
+        document.addEventListener('DOMContentLoaded', function() {
+            const ecommerceBtn = document.getElementById('ecommerce-btn');
+            const ecommerceLink = document.getElementById('ecommerce-link');
+            
+            if (ecommerceBtn) {
+                ecommerceBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    alert('');
+                });
+            }
+            
+            if (ecommerceLink) {
+                ecommerceLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    alert('');
+                });
+            }
+        });
+
+        // Contact form submission
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    
+                    const formData = {
+                        name: document.getElementById('name').value,
+                        email: document.getElementById('email').value,
+                        message: document.getElementById('message').value
+                    };
+
+                    try {
+                        const response = await fetch('/api/contact', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(formData)
+                        });
+
+                        const result = await response.json();
+                        
+                        if (response.ok) {
+                            alert('Message sent successfully!');
+                            contactForm.reset();
+                        } else {
+                            alert('Error: ' + result.error);
+                        }
+                    } catch (error) {
+                        alert('Error sending message. Please try again.');
+                        console.error('Error:', error);
+                    }
+                });
+            }
+            
+            // Initialize adaptive navbar
+            window.addEventListener('scroll', updateNavbarStyle);
+            updateNavbarStyle(); // Initial call
+        });
     </script>
-</body>
+
+    <script>
+        // Scroll-triggered product animations
+        function initScrollAnimations() {
+            const products = document.querySelectorAll('.scroll-product');
+            
+            function handleScroll() {
+                const scrollY = window.scrollY;
+                const windowHeight = window.innerHeight;
+                const scrollProgress = Math.min(scrollY / windowHeight, 1);
+                
+                products.forEach((product, index) => {
+                    const delay = index * 0.1;
+                    const progress = Math.max(0, scrollProgress - delay);
+                    
+                    if (progress > 0) {
+                        // Fade out and move based on scroll
+                        const opacity = Math.max(0, 0.8 - progress * 1.5);
+                        const translateY = progress * 100;
+                        const scale = Math.max(0.5, 1 - progress * 0.5);
+                        
+                        product.style.opacity = opacity;
+                        product.style.transform = `translateY(${translateY}px) scale(${scale})`;
+                        
+                        // Add rotation for some products
+                        if (product.classList.contains('product-cart') || product.classList.contains('product-delivery')) {
+                            const rotation = progress * 180;
+                            product.style.transform += ` rotate(${rotation}deg)`;
+                        }
+                    }
+                });
+            }
+            
+            window.addEventListener('scroll', handleScroll);
+            handleScroll(); // Initial call
+        }
+        
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', initScrollAnimations);
+    </script>
+    </body>
 </html>
